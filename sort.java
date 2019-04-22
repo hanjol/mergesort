@@ -9,6 +9,8 @@ public class sort {
         String inputString = inputScanner.nextLine();
         int[] inputArray = new int[inputString.length()];
 
+        //convert string to int array
+
         for(int i = 0; i < inputString.length(); i++)
         {
             try
@@ -21,6 +23,7 @@ public class sort {
             }
         }
 
+        //confirm
         System.out.print("You entered: ");
         for(int i = 0; i < inputArray.length; i++)
         {
@@ -31,10 +34,12 @@ public class sort {
 
         System.out.println("Sorting...");
 
+        //call mergesort method on array
         int[] sortedArray = mergesort.mergesort(inputArray);
 
         System.out.print("The sorted array is: ");
 
+        //print sorted array
         for(int i = 0; i < sortedArray.length; i++)
         {
             System.out.print(sortedArray[i]);

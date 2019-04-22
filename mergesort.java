@@ -1,5 +1,5 @@
 public class mergesort {
-    public static int[] mergesort(int[] unsorted)
+    public static int[] mergesort(int[] unsorted) //mergesort method with one argument
     {
         int[] sorted = unsorted;
 
@@ -20,13 +20,13 @@ public class mergesort {
 
         System.arraycopy(unsorted, mid, array2, 0, end-mid);
 
-        sorted = mergesort(array1,array2);
+        sorted = mergesort(array1,array2); //split one argument into two and call mergesort for two arguments
 
         return sorted;
     }
-    public static int[] mergesort(int[] array1, int[] array2)
+    public static int[] mergesort(int[] array1, int[] array2) // mergesort for two arguments
     {
-        if((array1.length == 1) && (array2.length == 1))
+        if((array1.length == 1) && (array2.length == 1)) // if arguments are both length 1, just compare and return
         {
             if(array1[0] < array2[0])
             {
@@ -38,7 +38,7 @@ public class mergesort {
             }
         }
 
-        if((array1.length == 1) && (array2.length > 1))
+        if((array1.length == 1) && (array2.length > 1)) // if one argument is an array and one is an integer...
         {
             int end = array2.length;
 
@@ -52,12 +52,14 @@ public class mergesort {
 
             System.arraycopy(array2, mid, array22, 0, end-mid);
 
-            array2 = mergesort(array21,array22);
+            array2 = mergesort(array21,array22); // split array and sort it
 
-            if(array1[0] < array2[0]) {
+            if(array1[0] < array2[0]) //then sort array + integer
+            {
                 return concat(array1, array2);
             }
-            else{
+            else
+            {
                 int temp = array2[0];
                 array2[0] = array1[0];
                 array2 = mergesort(array2);
@@ -65,7 +67,7 @@ public class mergesort {
             }
         }
 
-        if((array1.length > 1) && (array2.length == 1))
+        if((array1.length > 1) && (array2.length == 1)) // if one argument is an array and one is an integer...
         {
             int end = array1.length;
 
@@ -77,12 +79,14 @@ public class mergesort {
             int[] array12 = new int[end-mid];
             System.arraycopy(array1, mid, array12, 0, end-mid);
 
-            array1 = mergesort(array11,array12);
+            array1 = mergesort(array11,array12); // split array and sort it
 
-            if(array2[0] < array1[0]) {
+            if(array2[0] < array1[0])
+            {
                 return concat(array2, array1);
             }
-            else{
+            else //then sort array + integer
+            {
                 int temp = array1[0];
                 array1[0] = array2[0];
                 array1 = mergesort(array1);
@@ -90,7 +94,7 @@ public class mergesort {
             }
         }
 
-        if((array1.length > 1) && (array2.length > 1))
+        if((array1.length > 1) && (array2.length > 1)) // if both are arrays...
         {
             int end1 = array1.length;
 
@@ -102,7 +106,7 @@ public class mergesort {
             int[] array12 = new int[end1-mid1];
             System.arraycopy(array1, mid1, array12, 0, end1-mid1);
 
-            array1 = mergesort(array11,array12);
+            array1 = mergesort(array11,array12); // sort first array
 
             int end2 = array2.length;
 
@@ -114,7 +118,7 @@ public class mergesort {
             int[] array22 = new int[end2-mid2];
             System.arraycopy(array2, mid2, array22, 0, end2-mid2);
 
-            array2 = mergesort(array21,array22);
+            array2 = mergesort(array21,array22); // sort second array
 
             int total_length = array1.length+array2.length;
 
@@ -124,7 +128,7 @@ public class mergesort {
 
             int last2 = array2.length-1;
 
-            int current = 0;
+            int current = 0; //this variable will tell us which array was shorter
 
             int a1index = 0;
 
@@ -134,29 +138,38 @@ public class mergesort {
 
             for(i = 0; i < sorted.length; i++) {
 
-                if (a1index > last1) {
+                if (a1index > last1) // if we reached the end of array1
+                {
                     current = 1;
                     break;
                 }
-                if (a2index > last2) {
+                if (a2index > last2) //if we reached the end of array2
+                {
                     current = 2;
                     break;
                 }
 
-                if (array1[a1index] <= array2[a2index]) {
+                //since the arrays are already sorted, we can just compare and increment the index
+
+                if (array1[a1index] <= array2[a2index])
+                {
                     sorted[i] = array1[a1index];
                     a1index++;
-                } else {
+                }
+                else
+                {
                     sorted[i] = array2[a2index];
                     a2index++;
                 }
             }
 
-            if(current == 1) {
-                System.arraycopy(array2, a2index, sorted, i, end2-a2index);
+            if(current == 1) //if array1 was shorter
+            {
+                System.arraycopy(array2, a2index, sorted, i, end2-a2index); //add on rest of array2
             }
-            if(current == 2) {
-                System.arraycopy(array1, a1index, sorted, i, end1-a1index);
+            if(current == 2) //if array2 was shorter
+            {
+                System.arraycopy(array1, a1index, sorted, i, end1-a1index); //add on rest of array1
             }
 
             return sorted;
@@ -182,7 +195,7 @@ public class mergesort {
     }
 
     /***
-     * these methods are unused and are meant for development purposes only
+     * these methods are unused and were meant for development purposes only
      ***
 
     public static int[] concat(int[] array1, int integer)
